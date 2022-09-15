@@ -1,0 +1,8 @@
+#mainContent{
+    width: 100vw !important;
+    height: 100vh !important;
+}
+#contentForm{
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 15px;
+}

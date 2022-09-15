@@ -1,0 +1,55 @@
+<div class="container-fluid d-flex flex-column justify-content-evenly align-items-center" id="mainContent">
+    <div id="contentForm" class="shadow mt-5 p-4 d-flex flex-column justify-content-center align-items-center">
+        <form class=" needs-validation col-8 d-flex flex-column justify-content-center align-items-center" [formGroup]="fileForm"
+            (ngSubmit)="onSubmit()">
+            <label for="formGroupInputFile" class="form-label fs-4">Add file to process it</label>
+            <input type="file" class="form-control" name="file" (change)="onFileChange($event)"
+                [ngClass]="{'is-valid': fileForm.get('fileToUploadControl')?.valid, 'is-invalid': !fileForm.get('fileToUploadControl')?.valid}">
+                <p class="invalid-feedback text-center" *ngIf="!fileForm.get('fileToUploadControl')?.valid">You need to select one file</p>
+            <button class="mt-4 btn btn-outline-dark" type="submit" [disabled]="!fileForm.get('fileToUploadControl')?.valid">
+                <fa-icon [icon]="faUpload"></fa-icon>&nbsp;&nbsp;&nbsp; Upload file
+            </button>
+        </form>
+    </div>
+
+    <div id="contentAnswer" class="col-10 p-4 col-md-6">
+        <table class="table table-striped table-hover shadow">
+            <thead class="table-light">
+                <tr>
+                    <th class="col-6">Information</th>
+                    <th class="col-6">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Name:</p>
+                    </td>
+                    <td>
+                        <p class="font-monospace" *ngIf="fileDto.name">{{fileDto.name}}</p>
+                        <p class="font-monospace" *ngIf="!fileDto.name">-</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Size:</p>
+                    </td>
+                    <td>
+                        <p class="font-monospace" *ngIf="fileDto.size">{{fileDto.size}} bytes</p>
+                        <p class="font-monospace" *ngIf="!fileDto.size">-</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Content Type:</p>
+                    </td>
+                    <td>
+                        <p class="font-monospace" *ngIf="fileDto.mimeType">{{fileDto.mimeType}}</p>
+                        <p class="font-monospace" *ngIf="!fileDto.mimeType">-</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-outline-primary" href="http://localhost:4200/kittens/image">Go to kitten page</a>
+</div>
